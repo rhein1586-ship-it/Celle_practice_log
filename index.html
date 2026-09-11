@@ -14,7 +14,6 @@
       --text-main: #f0f2f5;
       --text-sub: #9ca3af;
       --danger: #e74c3c;
-      --success: #2ecc71;
     }
 
     * {
@@ -50,9 +49,6 @@
     h1 {
       font-size: 1.8rem;
       color: var(--accent-gold);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .subtitle {
@@ -130,7 +126,7 @@
       margin-bottom: 6px;
     }
 
-    input[type="text"], input[type="date"], select, textarea {
+    input[type="text"], input[type="date"], textarea {
       width: 100%;
       background-color: #141518;
       border: 1px solid var(--card-border);
@@ -140,7 +136,7 @@
       font-size: 0.95rem;
     }
 
-    input:focus, select:focus, textarea:focus {
+    input:focus, textarea:focus {
       outline: none;
       border-color: var(--accent-gold);
     }
@@ -156,61 +152,56 @@
       accent-color: var(--accent-gold);
     }
 
-    /* 연습 횟수 스퍼너 */
-    .count-control {
+    /* 루틴별 세부 횟수 입력 그리드 */
+    .routine-count-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .routine-count-item {
+      background-color: #141518;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 8px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #141518;
-      border: 1px solid var(--card-border);
-      border-radius: 6px;
-      padding: 4px;
     }
 
-    .count-btn {
-      background: none;
+    .routine-label {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .mini-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mini-btn {
+      background: #2a2e38;
       border: none;
       color: var(--text-main);
-      font-size: 1.2rem;
-      width: 40px;
-      height: 36px;
-      cursor: pointer;
+      width: 26px;
+      height: 26px;
       border-radius: 4px;
-    }
-
-    .count-btn:hover {
-      background-color: var(--card-border);
-    }
-
-    .count-display {
-      font-weight: bold;
-      color: var(--accent-gold);
-    }
-
-    /* 루틴 선택 태그 버튼 */
-    .routine-tag-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .tag-btn {
-      background-color: #141518;
-      border: 1px solid var(--card-border);
-      color: var(--text-sub);
-      padding: 10px;
-      border-radius: 6px;
       cursor: pointer;
-      text-align: center;
-      font-size: 0.9rem;
-      transition: all 0.2s;
+      font-weight: bold;
     }
 
-    .tag-btn.active {
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
-      background-color: rgba(212, 175, 55, 0.1);
+    .mini-btn:hover {
+      background-color: var(--accent-gold);
+      color: #000;
+    }
+
+    .mini-display {
+      font-size: 0.85rem;
       font-weight: bold;
+      color: var(--accent-gold);
+      min-width: 28px;
+      text-align: center;
     }
 
     .btn {
@@ -325,6 +316,12 @@
       cursor: pointer;
     }
 
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
     .badge {
       display: inline-block;
       padding: 2px 6px;
@@ -332,8 +329,6 @@
       font-size: 0.75rem;
       background-color: #2a2e38;
       color: var(--accent-gold);
-      margin-right: 4px;
-      margin-top: 4px;
     }
   </style>
 </head>
@@ -398,22 +393,42 @@
           </div>
         </div>
 
+        <!-- 세부 루틴별 횟수 입력 섹션 -->
         <div class="form-group">
-          <label>연습 횟수</label>
-          <div class="count-control">
-            <button type="button" class="count-btn" onclick="adjustCount(-1)">-</button>
-            <span class="count-display" id="countDisplay">1회</span>
-            <button type="button" class="count-btn" onclick="adjustCount(1)">+</button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>연습 루틴 선택 (다중 선택 가능)</label>
-          <div class="routine-tag-grid">
-            <div class="tag-btn" onclick="toggleTag(this, '손풀기')">손풀기</div>
-            <div class="tag-btn" onclick="toggleTag(this, '테크닉')">테크닉</div>
-            <div class="tag-btn" onclick="toggleTag(this, '부분 연습')">부분 연습</div>
-            <div class="tag-btn" onclick="toggleTag(this, '전체 연습')">전체 연습</div>
+          <label>루틴별 연습 횟수 설정</label>
+          <div class="routine-count-grid">
+            <div class="routine-count-item">
+              <span class="routine-label">손풀기</span>
+              <div class="mini-control">
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('warmup', -1)">-</button>
+                <span class="mini-display" id="cnt-warmup">0회</span>
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('warmup', 1)">+</button>
+              </div>
+            </div>
+            <div class="routine-count-item">
+              <span class="routine-label">테크닉</span>
+              <div class="mini-control">
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('tech', -1)">-</button>
+                <span class="mini-display" id="cnt-tech">0회</span>
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('tech', 1)">+</button>
+              </div>
+            </div>
+            <div class="routine-count-item">
+              <span class="routine-label">부분 연습</span>
+              <div class="mini-control">
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('part', -1)">-</button>
+                <span class="mini-display" id="cnt-part">0회</span>
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('part', 1)">+</button>
+              </div>
+            </div>
+            <div class="routine-count-item">
+              <span class="routine-label">전체 연습</span>
+              <div class="mini-control">
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('full', -1)">-</button>
+                <span class="mini-display" id="cnt-full">0회</span>
+                <button type="button" class="mini-btn" onclick="adjustRoutineCount('full', 1)">+</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -471,8 +486,8 @@
           <tr>
             <th>날짜</th>
             <th>곡명</th>
-            <th>시간 / 횟수</th>
-            <th>루틴</th>
+            <th>연습 시간</th>
+            <th>세부 루틴 횟수</th>
             <th>메모</th>
             <th>삭제</th>
           </tr>
@@ -486,8 +501,13 @@
 
 <script>
   let practiceLogs = JSON.parse(localStorage.getItem('celloLogs') || '[]');
-  let currentCount = 1;
-  let selectedTags = [];
+  
+  let routineCounts = {
+    warmup: 0,
+    tech: 0,
+    part: 0,
+    full: 0
+  };
 
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logDate').valueAsDate = new Date();
@@ -498,18 +518,9 @@
     document.getElementById('timeDisplay').innerText = val + '분';
   }
 
-  function adjustCount(delta) {
-    currentCount = Math.max(1, currentCount + delta);
-    document.getElementById('countDisplay').innerText = currentCount + '회';
-  }
-
-  function toggleTag(btn, tagName) {
-    btn.classList.toggle('active');
-    if (selectedTags.includes(tagName)) {
-      selectedTags = selectedTags.filter(t => t !== tagName);
-    } else {
-      selectedTags.push(tagName);
-    }
+  function adjustRoutineCount(type, delta) {
+    routineCounts[type] = Math.max(0, routineCounts[type] + delta);
+    document.getElementById(`cnt-${type}`).innerText = routineCounts[type] + '회';
   }
 
   document.getElementById('logForm').addEventListener('submit', (e) => {
@@ -524,8 +535,7 @@
       date,
       piece,
       duration,
-      count: currentCount,
-      routines: [...selectedTags],
+      routineDetails: { ...routineCounts },
       memo
     };
 
@@ -536,10 +546,10 @@
     // 폼 초기화
     document.getElementById('logPiece').value = '';
     document.getElementById('logMemo').value = '';
-    currentCount = 1;
-    document.getElementById('countDisplay').innerText = '1회';
-    selectedTags = [];
-    document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+    routineCounts = { warmup: 0, tech: 0, part: 0, full: 0 };
+    ['warmup', 'tech', 'part', 'full'].forEach(type => {
+      document.getElementById(`cnt-${type}`).innerText = '0회';
+    });
   });
 
   function deleteLog(id) {
@@ -570,12 +580,21 @@
 
     practiceLogs.forEach(log => {
       const tr = document.createElement('tr');
-      const routineBadges = (log.routines || []).map(r => `<span class="badge">${r}</span>`).join('') || '-';
+      
+      const rd = log.routineDetails || {};
+      const badges = [];
+      if (rd.warmup) badges.push(`<span class="badge">손풀기 ${rd.warmup}회</span>`);
+      if (rd.tech) badges.push(`<span class="badge">테크닉 ${rd.tech}회</span>`);
+      if (rd.part) badges.push(`<span class="badge">부분연습 ${rd.part}회</span>`);
+      if (rd.full) badges.push(`<span class="badge">전체연습 ${rd.full}회</span>`);
+
+      const badgeHTML = badges.length > 0 ? `<div class="badge-group">${badges.join('')}</div>` : '-';
+
       tr.innerHTML = `
         <td>${log.date}</td>
         <td><strong>${escapeHtml(log.piece)}</strong></td>
-        <td>${log.duration}분 / ${log.count || 1}회</td>
-        <td>${routineBadges}</td>
+        <td>${log.duration}분</td>
+        <td>${badgeHTML}</td>
         <td>${escapeHtml(log.memo || '-')}</td>
         <td><button class="action-btn" onclick="deleteLog(${log.id})">삭제</button></td>
       `;
@@ -585,8 +604,14 @@
 
   function calculateStats() {
     const totalMin = practiceLogs.reduce((acc, log) => acc + log.duration, 0);
-    const totalCount = practiceLogs.reduce((acc, log) => acc + (log.count || 1), 0);
-    document.getElementById('totalMin').innerHTML = `${totalMin}<span> 분 (${totalCount}회)</span>`;
+    
+    let totalSessions = 0;
+    practiceLogs.forEach(log => {
+      const rd = log.routineDetails || {};
+      totalSessions += (rd.warmup || 0) + (rd.tech || 0) + (rd.part || 0) + (rd.full || 0);
+    });
+
+    document.getElementById('totalMin').innerHTML = `${totalMin}<span> 분 (총 ${totalSessions}회)</span>`;
 
     const now = new Date();
     const startOfWeek = new Date(now);
@@ -652,10 +677,10 @@
   }
 
   function exportCSV() {
-    let csv = "\uFEFF날짜,곡명,연습시간(분),연습횟수,루틴,메모\n";
+    let csv = "\uFEFF날짜,곡명,연습시간(분),손풀기(회),테크닉(회),부분연습(회),전체연습(회),메모\n";
     practiceLogs.forEach(log => {
-      const routinesStr = (log.routines || []).join(';');
-      csv += `"${log.date}","${log.piece.replace(/"/g, '""')}",${log.duration},${log.count || 1},"${routinesStr}","${(log.memo || '').replace(/"/g, '""')}"\n`;
+      const rd = log.routineDetails || {};
+      csv += `"${log.date}","${log.piece.replace(/"/g, '""')}",${log.duration},${rd.warmup || 0},${rd.tech || 0},${rd.part || 0},${rd.full || 0},"${(log.memo || '').replace(/"/g, '""')}"\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
