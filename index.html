@@ -15,364 +15,63 @@
       --text-sub: #9ca3af;
       --danger: #e74c3c;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      padding: 16px;
-      line-height: 1.5;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* 상단 메인 탭 */
-    .tab-nav {
-      display: flex;
-      background-color: #1a1c23;
-      border-radius: 12px;
-      padding: 4px;
-      margin-bottom: 16px;
-      border: 1px solid var(--card-border);
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 12px;
-      background: none;
-      border: none;
-      color: var(--text-sub);
-      font-size: 0.95rem;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s;
-    }
-
-    .tab-btn.active {
-      background-color: var(--card-bg);
-      color: var(--accent-gold);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    /* 상단 배너 */
-    .streak-banner {
-      background-color: rgba(212, 175, 55, 0.1);
-      border: 1px solid var(--accent-gold);
-      color: var(--accent-gold);
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      color: var(--accent-gold);
-      margin-bottom: 16px;
-      font-weight: bold;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      margin-bottom: 6px;
-    }
-
-    input[type="text"], input[type="date"], textarea {
-      width: 100%;
-      background-color: #141518;
-      border: 1px solid var(--card-border);
-      border-radius: 6px;
-      padding: 10px 12px;
-      color: var(--text-main);
-      font-size: 0.95rem;
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-gold);
-    }
-
-    .slider-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    input[type="range"] {
-      flex: 1;
-      accent-color: var(--accent-gold);
-    }
-
-    /* 루틴별 세부 횟수 */
-    .routine-count-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .routine-count-item {
-      background-color: #141518;
-      border: 1px solid var(--card-border);
-      border-radius: 6px;
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .routine-label {
-      font-size: 0.85rem;
-      color: var(--text-main);
-    }
-
-    .mini-control {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .mini-btn {
-      background: #2a2e38;
-      border: none;
-      color: var(--text-main);
-      width: 26px;
-      height: 26px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .mini-btn:hover {
-      background-color: var(--accent-gold);
-      color: #000;
-    }
-
-    .mini-display {
-      font-size: 0.85rem;
-      font-weight: bold;
-      color: var(--accent-gold);
-      min-width: 28px;
-      text-align: center;
-    }
-
-    .btn {
-      background-color: var(--accent-gold);
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      padding: 12px 16px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      font-size: 0.95rem;
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-    }
-
-    /* 분석 탭 통계 카드 */
-    .stat-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .stat-box {
-      background-color: #141518;
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .stat-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background-color: rgba(212, 175, 55, 0.15);
-      color: var(--accent-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-
-    .stat-info .title {
-      font-size: 0.8rem;
-      color: var(--text-sub);
-    }
-
-    .stat-info .val {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: var(--text-main);
-    }
-
-    .stat-info .sub {
-      font-size: 0.75rem;
-      color: var(--text-sub);
-    }
-
-    /* 차트 컨테이너 */
-    .chart-container {
-      height: 180px;
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      padding-top: 20px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .bar-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-      justify-content: flex-end;
-    }
-
-    .bar {
-      width: 100%;
-      background-color: var(--accent-gold);
-      border-radius: 3px 3px 0 0;
-      min-height: 2px;
-    }
-
-    .bar-label {
-      font-size: 0.65rem;
-      color: var(--text-sub);
-      margin-top: 6px;
-    }
-
-    /* 리뷰 탭 요약 박스 */
-    .summary-box {
-      background-color: rgba(212, 175, 55, 0.1);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-
-    .summary-box h4 {
-      color: var(--accent-gold);
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-    }
-
-    .summary-box p {
-      font-size: 0.85rem;
-      color: var(--text-main);
-    }
-
-    /* 테이블 */
-    .table-container {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid var(--card-border);
-      text-align: left;
-    }
-
-    th {
-      color: var(--text-sub);
-      background-color: #16171c;
-    }
-
-    .action-btn {
-      background: none;
-      border: none;
-      color: var(--danger);
-      cursor: pointer;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      background-color: #2a2e38;
-      color: var(--accent-gold);
-      margin-right: 2px;
-      margin-top: 2px;
-    }
-
-    .backup-bar {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .file-input-wrapper {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .file-input-wrapper input[type=file] {
-      font-size: 100px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      cursor: pointer;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-main); padding: 16px; line-height: 1.5; }
+    .container { max-width: 800px; margin: 0 auto; }
+    .backup-bar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 12px; }
+    .file-input-wrapper { position: relative; overflow: hidden; }
+    .file-input-wrapper input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
+    .tab-nav { display: flex; background-color: #1a1c23; border-radius: 12px; padding: 4px; margin-bottom: 16px; border: 1px solid var(--card-border); }
+    .tab-btn { flex: 1; padding: 12px; background: none; border: none; color: var(--text-sub); font-size: 0.95rem; font-weight: bold; border-radius: 8px; cursor: pointer; text-align: center; }
+    .tab-btn.active { background-color: var(--card-bg); color: var(--accent-gold); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .banner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .banner-card { background-color: rgba(212, 175, 55, 0.1); border: 1px solid var(--accent-gold); color: var(--accent-gold); border-radius: 10px; padding: 12px; font-weight: bold; text-align: center; font-size: 0.9rem; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+    .card-title { font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 16px; font-weight: bold; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 0.85rem; color: var(--text-sub); margin-bottom: 6px; }
+    input[type="text"], input[type="number"], input[type="date"], textarea { width: 100%; background-color: #141518; border: 1px solid var(--card-border); border-radius: 6px; padding: 10px 12px; color: var(--text-main); font-size: 0.95rem; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent-gold); }
+    .slider-container { display: flex; align-items: center; gap: 12px; }
+    input[type="range"] { flex: 1; accent-color: var(--accent-gold); }
+    .routine-count-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .routine-count-item { background-color: #141518; border: 1px solid var(--card-border); border-radius: 6px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; }
+    .routine-label { font-size: 0.85rem; color: var(--text-main); }
+    .mini-control { display: flex; align-items: center; gap: 6px; }
+    .mini-btn { background: #2a2e38; border: none; color: var(--text-main); width: 26px; height: 26px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .mini-btn:hover { background-color: var(--accent-gold); color: #000; }
+    .mini-display { font-size: 0.85rem; font-weight: bold; color: var(--accent-gold); min-width: 28px; text-align: center; }
+    .btn { background-color: var(--accent-gold); color: #000; border: none; border-radius: 6px; padding: 12px 16px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.95rem; }
+    .btn-secondary { background-color: transparent; border: 1px solid var(--card-border); color: var(--text-main); }
+    .routine-box { background-color: #141518; border: 1px solid var(--card-border); border-radius: 8px; padding: 16px; margin-top: 16px; }
+    .routine-item { margin-bottom: 12px; }
+    .routine-tag { display: inline-block; font-size: 0.75rem; background-color: rgba(212, 175, 55, 0.15); color: var(--accent-gold); padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; }
+    .routine-desc { font-size: 0.9rem; color: var(--text-main); }
+    .stat-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .stat-box { background-color: #141518; border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 16px; }
+    .stat-icon { width: 44px; height: 44px; border-radius: 50%; background-color: rgba(212, 175, 55, 0.15); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .stat-info .title { font-size: 0.8rem; color: var(--text-sub); }
+    .stat-info .val { font-size: 1.3rem; font-weight: bold; color: var(--text-main); }
+    .stat-info .sub { font-size: 0.75rem; color: var(--text-sub); }
+    .chart-container { height: 180px; display: flex; align-items: flex-end; gap: 6px; padding-top: 20px; border-bottom: 1px solid var(--card-border); }
+    .bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+    .bar { width: 100%; background-color: var(--accent-gold); border-radius: 3px 3px 0 0; min-height: 2px; }
+    .bar-label { font-size: 0.65rem; color: var(--text-sub); margin-top: 6px; }
+    .summary-box { background-color: rgba(212, 175, 55, 0.1); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .summary-box h4 { color: var(--accent-gold); margin-bottom: 6px; font-size: 0.95rem; }
+    .summary-box p { font-size: 0.85rem; color: var(--text-main); }
+    .table-container { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { padding: 10px; border-bottom: 1px solid var(--card-border); text-align: left; }
+    th { color: var(--text-sub); background-color: #16171c; }
+    .action-btn { background: none; border: none; color: var(--danger); cursor: pointer; }
+    .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; background-color: #2a2e38; color: var(--accent-gold); margin-right: 2px; margin-top: 2px; }
   </style>
 </head>
 <body>
-
 <div class="container">
-  <!-- 백업 버튼 -->
   <div class="backup-bar">
     <button class="btn btn-secondary" style="width:auto; padding:6px 12px; font-size:0.8rem;" onclick="exportJSON()">JSON 백업</button>
     <button class="btn btn-secondary" style="width:auto; padding:6px 12px; font-size:0.8rem;" onclick="exportCSV()">CSV 엑셀 저장</button>
@@ -382,19 +81,17 @@
     </div>
   </div>
 
-  <!-- 상단 메인 탭 메뉴 -->
   <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('logTab', this)">🎵 연습 기록</button>
     <button class="tab-btn" onclick="switchTab('analysisTab', this)">📊 분석</button>
     <button class="tab-btn" onclick="switchTab('reviewTab', this)">📖 리뷰</button>
   </div>
 
-  <!-- 연속 연습 배너 -->
-  <div class="streak-banner">
-    🔥 <span id="streakDisplay">0일 연속 연습 중</span>
+  <div class="banner-grid">
+    <div class="banner-card" id="dDayDisplay">🎼 연주회 D-7일</div>
+    <div class="banner-card" id="streakDisplay">🔥 0일 연속 연습 중</div>
   </div>
 
-  <!-- 1. 연습 기록 탭 -->
   <div id="logTab" class="tab-content active">
     <div class="card">
       <div class="card-title">오늘의 기록</div>
@@ -403,19 +100,20 @@
           <label for="logDate">연습 날짜</label>
           <input type="date" id="logDate" required>
         </div>
-
         <div class="form-group">
           <label for="logPiece">연습 곡명</label>
-          <input type="text" id="logPiece" placeholder="예: 슈만 두 사람의 척탄병, 윌리엄 텔" required>
+          <input type="text" id="logPiece" placeholder="예: 윌리엄 텔 서곡, 파헬벨 캐논" required>
         </div>
-
         <div class="form-group">
           <label>연습 시간: <strong id="timeDisplay" style="color: var(--accent-gold);">45분</strong></label>
           <div class="slider-container">
             <input type="range" id="logDuration" min="5" max="180" step="5" value="45" oninput="updateTimeDisplay(this.value)">
           </div>
         </div>
-
+        <div class="form-group">
+          <label for="logBpm">오늘 성공한 템포 (BPM) (선택)</label>
+          <input type="number" id="logBpm" placeholder="예: 120">
+        </div>
         <div class="form-group">
           <label>루틴별 연습 횟수</label>
           <div class="routine-count-grid">
@@ -453,131 +151,106 @@
             </div>
           </div>
         </div>
-
         <div class="form-group">
           <label for="logMemo">오늘의 메모</label>
           <textarea id="logMemo" rows="3" placeholder="잘된 점, 어려웠던 부분, 내일 이어갈 내용을 적어보세요."></textarea>
         </div>
-
         <button type="submit" class="btn">💾 연습 기록 저장</button>
       </form>
     </div>
 
-    <!-- 연습 일지 목록 -->
+    <div class="card">
+      <div class="card-title">곡별 맞춤 루틴 생성기</div>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">
+        연습 곡명을 입력하면 맞춤 스케일, 아티큘레이션, 붓점 리듬, 마디 연습 순서를 제안합니다.
+      </p>
+      <div class="form-group">
+        <input type="text" id="customPieceInput" placeholder="예: 슈만 두 사람의 척탄병, 엘가 협주곡">
+      </div>
+      <button class="btn btn-secondary" onclick="generateRoutine()">✨ 맞춤 루틴 생성하기</button>
+      <div class="routine-box" id="routineResult" style="display: none;">
+        <h4 id="routinePieceTitle" style="color: var(--accent-gold); margin-bottom: 12px; font-size: 1rem;"></h4>
+        <div class="routine-item"><div class="routine-tag">1단계: 조성 스케일</div><div class="routine-desc" id="rtScale"></div></div>
+        <div class="routine-item"><div class="routine-tag">2단계: 아티큘레이션 (슬러·스타카토)</div><div class="routine-desc" id="rtArtic"></div></div>
+        <div class="routine-item"><div class="routine-tag">3단계: 붓점 리듬 연습</div><div class="routine-desc" id="rtRhythm"></div></div>
+        <div class="routine-item"><div class="routine-tag">4단계: 부분 연습 순서</div><div class="routine-desc" id="rtSection"></div></div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-title">연습 일지 목록</div>
       <div class="table-container">
         <table>
           <thead>
-            <tr>
-              <th>날짜</th>
-              <th>곡명</th>
-              <th>시간</th>
-              <th>세부 횟수</th>
-              <th>메모</th>
-              <th>삭제</th>
-            </tr>
+            <tr><th>날짜</th><th>곡명</th><th>시간 / 템포</th><th>세부 횟수</th><th>메모</th><th>삭제</th></tr>
           </thead>
-          <tbody id="historyTableBody">
-          </tbody>
+          <tbody id="historyTableBody"></tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- 2. 분석 탭 -->
   <div id="analysisTab" class="tab-content">
     <div class="stat-list">
-      <div class="stat-box">
-        <div class="stat-icon">🕒</div>
-        <div class="stat-info">
-          <div class="title">누적 연습시간</div>
-          <div class="val" id="anTotalMin">0분</div>
-          <div class="sub" id="anTotalDays">0일 기록</div>
-        </div>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-icon">📊</div>
-        <div class="stat-info">
-          <div class="title">하루 평균</div>
-          <div class="val" id="anAvgMin">0분</div>
-          <div class="sub">연습한 날 기준</div>
-        </div>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-icon">🎵</div>
-        <div class="stat-info">
-          <div class="title">연습곡 수</div>
-          <div class="val" id="anPieceCount">0곡</div>
-          <div class="sub">전체 기간</div>
-        </div>
-      </div>
+      <div class="stat-box"><div class="stat-icon">🕒</div><div class="stat-info"><div class="title">누적 연습시간</div><div class="val" id="anTotalMin">0분</div><div class="sub" id="anTotalDays">0일 기록</div></div></div>
+      <div class="stat-box"><div class="stat-icon">📊</div><div class="stat-info"><div class="title">하루 평균</div><div class="val" id="anAvgMin">0분</div><div class="sub">연습한 날 기준</div></div></div>
+      <div class="stat-box"><div class="stat-icon">🎵</div><div class="stat-info"><div class="title">연습곡 수</div><div class="val" id="anPieceCount">0곡</div><div class="sub">전체 기간</div></div></div>
     </div>
-
     <div class="card">
       <div class="card-title">최근 30일 연습시간</div>
       <p style="font-size:0.8rem; color:var(--text-sub);">날짜별 연습량의 흐름을 확인하세요.</p>
-      <div class="chart-container" id="chartContainer">
-      </div>
+      <div class="chart-container" id="chartContainer"></div>
     </div>
   </div>
 
-  <!-- 3. 리뷰 탭 -->
   <div id="reviewTab" class="tab-content">
     <div class="card">
       <div class="card-title" id="reviewWeekTitle">주간 돌아보기</div>
-      
       <div class="summary-box">
         <h4>💡 자동 요약</h4>
         <p id="reviewAutoSummary">이번 주 0일 동안 총 0분을 연습했습니다. 기록을 남기면 자동 분석이 시작됩니다.</p>
       </div>
-
       <form id="reviewForm">
-        <div class="form-group">
-          <label for="revGood">잘된 점</label>
-          <textarea id="revGood" rows="3" placeholder="예: 매일 활 배분을 표시하고 연습했다."></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="revHard">어려웠던 점</label>
-          <textarea id="revHard" rows="3" placeholder="예: 빠른 붓점 리듬에서 왼손이 긴장했다."></textarea>
-        </div>
-
+        <div class="form-group"><label for="revGood">잘된 점</label><textarea id="revGood" rows="3" placeholder="예: 매일 활 배분을 표시하고 연습했다."></textarea></div>
+        <div class="form-group"><label for="revHard">어려웠던 점</label><textarea id="revHard" rows="3" placeholder="예: 빠른 붓점 리듬에서 왼손이 긴장했다."></textarea></div>
         <button type="button" class="btn" onclick="saveReview()">주간 리뷰 저장</button>
       </form>
     </div>
   </div>
-
 </div>
 
 <script>
   let practiceLogs = JSON.parse(localStorage.getItem('celloLogs') || '[]');
   let weeklyReviews = JSON.parse(localStorage.getItem('celloReviews') || '{}');
-  
   let routineCounts = { warmup: 0, tech: 0, part: 0, full: 0 };
 
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logDate').valueAsDate = new Date();
+    calculateDDay();
     renderAll();
   });
+
+  function calculateDDay() {
+    const concertDate = new Date('2026-09-19');
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const diffDays = Math.ceil((concertDate - today) / (1000 * 60 * 60 * 24));
+    const dDayElem = document.getElementById('dDayDisplay');
+    if (diffDays > 0) dDayElem.innerText = `🎼 연주회 D-${diffDays}일`;
+    else if (diffDays === 0) dDayElem.innerText = `🎼 오늘이 연주회 날입니다!`;
+    else dDayElem.innerText = `🎼 연주회 D+${Math.abs(diffDays)}일`;
+  }
 
   function switchTab(tabId, btn) {
     document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(tb => tb.classList.remove('active'));
-    
     document.getElementById(tabId).classList.add('active');
     btn.classList.add('active');
-
     if (tabId === 'analysisTab') renderAnalysis();
     if (tabId === 'reviewTab') renderReview();
   }
 
-  function updateTimeDisplay(val) {
-    document.getElementById('timeDisplay').innerText = val + '분';
-  }
-
+  function updateTimeDisplay(val) { document.getElementById('timeDisplay').innerText = val + '분'; }
   function adjustRoutineCount(type, delta) {
     routineCounts[type] = Math.max(0, routineCounts[type] + delta);
     document.getElementById(`cnt-${type}`).innerText = routineCounts[type] + '회';
@@ -588,34 +261,27 @@
     const date = document.getElementById('logDate').value;
     const piece = document.getElementById('logPiece').value.trim();
     const duration = parseInt(document.getElementById('logDuration').value);
+    const bpm = document.getElementById('logBpm').value;
     const memo = document.getElementById('logMemo').value.trim();
 
-    const newLog = {
-      id: Date.now(),
-      date,
-      piece,
-      duration,
-      routineDetails: { ...routineCounts },
-      memo
-    };
-
-    practiceLogs.unshift(newLog);
-    saveData();
-    renderAll();
+    practiceLogs.unshift({
+      id: Date.now(), date, piece, duration,
+      bpm: bpm ? parseInt(bpm) : null,
+      routineDetails: { ...routineCounts }, memo
+    });
+    saveData(); renderAll();
 
     document.getElementById('logPiece').value = '';
+    document.getElementById('logBpm').value = '';
     document.getElementById('logMemo').value = '';
     routineCounts = { warmup: 0, tech: 0, part: 0, full: 0 };
-    ['warmup', 'tech', 'part', 'full'].forEach(type => {
-      document.getElementById(`cnt-${type}`).innerText = '0회';
-    });
+    ['warmup', 'tech', 'part', 'full'].forEach(t => document.getElementById(`cnt-${t}`).innerText = '0회');
   });
 
   function deleteLog(id) {
-    if (confirm('이 연습 기록을 삭제하시겠습니까?')) {
+    if (confirm('삭제하시겠습니까?')) {
       practiceLogs = practiceLogs.filter(log => log.id !== id);
-      saveData();
-      renderAll();
+      saveData(); renderAll();
     }
   }
 
@@ -624,20 +290,15 @@
     localStorage.setItem('celloReviews', JSON.stringify(weeklyReviews));
   }
 
-  function renderAll() {
-    renderHistory();
-    calculateStreak();
-  }
+  function renderAll() { renderHistory(); calculateStreak(); }
 
   function renderHistory() {
     const tbody = document.getElementById('historyTableBody');
     tbody.innerHTML = '';
-
     if (practiceLogs.length === 0) {
       tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-sub);">저장된 기록이 없습니다.</td></tr>';
       return;
     }
-
     practiceLogs.forEach(log => {
       const tr = document.createElement('tr');
       const rd = log.routineDetails || {};
@@ -646,15 +307,8 @@
       if (rd.tech) badges.push(`<span class="badge">테크닉 ${rd.tech}회</span>`);
       if (rd.part) badges.push(`<span class="badge">부분 ${rd.part}회</span>`);
       if (rd.full) badges.push(`<span class="badge">전체 ${rd.full}회</span>`);
-
-      tr.innerHTML = `
-        <td>${log.date}</td>
-        <td><strong>${escapeHtml(log.piece)}</strong></td>
-        <td>${log.duration}분</td>
-        <td>${badges.join('') || '-'}</td>
-        <td>${escapeHtml(log.memo || '-')}</td>
-        <td><button class="action-btn" onclick="deleteLog(${log.id})">삭제</button></td>
-      `;
+      const bpmStr = log.bpm ? `<br><span style="font-size:0.75rem; color:var(--accent-gold);"> BPM ${log.bpm}</span>` : '';
+      tr.innerHTML = `<td>${log.date}</td><td><strong>${escapeHtml(log.piece)}</strong></td><td>${log.duration}분${bpmStr}</td><td>${badges.join('') || '-'}</td><td>${escapeHtml(log.memo || '-')}</td><td><button class="action-btn" onclick="deleteLog(${log.id})">삭제</button></td>`;
       tbody.appendChild(tr);
     });
   }
@@ -663,149 +317,106 @@
     let streak = 0;
     const sortedDates = [...new Set(practiceLogs.map(l => l.date))].sort().reverse();
     let checkDate = new Date();
-
     for (let i = 0; i < sortedDates.length; i++) {
       const dStr = checkDate.toISOString().split('T')[0];
-      if (sortedDates.includes(dStr)) {
-        streak++;
+      if (sortedDates.includes(dStr)) { streak++; checkDate.setDate(checkDate.getDate() - 1); }
+      else if (i === 0) {
         checkDate.setDate(checkDate.getDate() - 1);
-      } else if (i === 0) {
-        checkDate.setDate(checkDate.getDate() - 1);
-        const yesterdayStr = checkDate.toISOString().split('T')[0];
-        if (sortedDates.includes(yesterdayStr)) {
-          streak++;
-          checkDate.setDate(checkDate.getDate() - 1);
-        } else break;
+        if (sortedDates.includes(checkDate.toISOString().split('T')[0])) { streak++; checkDate.setDate(checkDate.getDate() - 1); }
+        else break;
       } else break;
     }
-    document.getElementById('streakDisplay').innerText = `${streak}일 연속 연습 중`;
+    document.getElementById('streakDisplay').innerText = `🔥 ${streak}일 연속 연습 중`;
   }
 
-  /* 분석 탭 계산 */
+  function generateRoutine() {
+    const title = document.getElementById('customPieceInput').value.trim();
+    if (!title) { alert('곡명을 입력해주세요.'); return; }
+    document.getElementById('routineResult').style.display = 'block';
+    document.getElementById('routinePieceTitle').innerText = `[${title}] 맞춤 루틴 제안`;
+    document.getElementById('rtScale').innerText = `'${title}'의 주요 조성 스케일 및 2옥타브/3옥타브 아르페지오 음정 정확도 점검`;
+    document.getElementById('rtArtic').innerText = `활 분배 위치(너트/중앙/팁) 고정 및 레가토와 스타카토의 명확한 경계 구분`;
+    document.getElementById('rtRhythm').innerText = `까다로운 당김음 구간 붓점 및 역붓점 리듬 변형 연습을 통한 왼손 긴장 완화`;
+    document.getElementById('rtSection').innerText = `가장 취약한 4마디 선정 -> 슬로우 템포 시작 -> 목표 BPM까지 5bpm씩 단계적 상향`;
+  }
+
   function renderAnalysis() {
     const totalMin = practiceLogs.reduce((acc, log) => acc + log.duration, 0);
     const uniqueDays = new Set(practiceLogs.map(log => log.date)).size;
     const avgMin = uniqueDays > 0 ? Math.round(totalMin / uniqueDays) : 0;
     const pieces = new Set(practiceLogs.map(log => log.piece)).size;
-
     document.getElementById('anTotalMin').innerText = `${totalMin}분`;
     document.getElementById('anTotalDays').innerText = `${uniqueDays}일 기록`;
     document.getElementById('anAvgMin').innerText = `${avgMin}분`;
     document.getElementById('anPieceCount').innerText = `${pieces}곡`;
 
-    // 30일 그래프 생성
-    const chart = document.getElementById('chartContainer');
-    chart.innerHTML = '';
-    
-    const today = new Date();
-    let maxMin = 1;
-    const dailyData = [];
-
+    const chart = document.getElementById('chartContainer'); chart.innerHTML = '';
+    const today = new Date(); let maxMin = 1; const dailyData = [];
     for (let i = 29; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
+      const d = new Date(today); d.setDate(d.getDate() - i);
       const dateStr = d.toISOString().split('T')[0];
       const sumMin = practiceLogs.filter(l => l.date === dateStr).reduce((acc, l) => acc + l.duration, 0);
       if (sumMin > maxMin) maxMin = sumMin;
       dailyData.push({ dateStr: dateStr.slice(8), min: sumMin });
     }
-
     dailyData.forEach(d => {
-      const heightPct = Math.round((d.min / maxMin) * 100);
-      const barWrapper = document.createElement('div');
-      barWrapper.className = 'bar-wrapper';
-      barWrapper.innerHTML = `
-        <div class="bar" style="height: ${heightPct}%;" title="${d.min}분"></div>
-        <div class="bar-label">${d.dateStr}</div>
-      `;
+      const barWrapper = document.createElement('div'); barWrapper.className = 'bar-wrapper';
+      barWrapper.innerHTML = `<div class="bar" style="height: ${Math.round((d.min / maxMin) * 100)}%;" title="${d.min}분"></div><div class="bar-label">${d.dateStr}</div>`;
       chart.appendChild(barWrapper);
     });
   }
 
-  /* 리뷰 탭 계산 */
   function renderReview() {
-    const now = new Date();
-    const startOfWeek = new Date(now);
-    startOfWeek.setDate(now.getDate() - now.getDay());
-    startOfWeek.setHours(0, 0, 0, 0);
-
+    const now = new Date(); const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - now.getDay()); startOfWeek.setHours(0,0,0,0);
     const weekLogs = practiceLogs.filter(log => new Date(log.date) >= startOfWeek);
     const weekMin = weekLogs.reduce((acc, l) => acc + l.duration, 0);
     const weekDays = new Set(weekLogs.map(l => l.date)).size;
-
     const weekKey = startOfWeek.toISOString().split('T')[0];
     document.getElementById('reviewWeekTitle').innerText = `${weekKey} 주간 돌아보기`;
-
-    document.getElementById('reviewAutoSummary').innerText = 
-      `이번 주 ${weekDays}일 동안 총 ${weekMin}분을 연습했습니다.` + (weekLogs.length > 0 ? " 꾸준한 성장을 응원합니다!" : " 첫 기록을 남기면 자동 분석이 시작됩니다.");
-
+    document.getElementById('reviewAutoSummary').innerText = `이번 주 ${weekDays}일 동안 총 ${weekMin}분을 연습했습니다.` + (weekLogs.length > 0 ? " 꾸준한 성장을 응원합니다!" : " 첫 기록을 남기면 자동 분석이 시작됩니다.");
     const curReview = weeklyReviews[weekKey] || {};
     document.getElementById('revGood').value = curReview.good || '';
     document.getElementById('revHard').value = curReview.hard || '';
   }
 
   function saveReview() {
-    const now = new Date();
-    const startOfWeek = new Date(now);
+    const now = new Date(); const startOfWeek = new Date(now);
     startOfWeek.setDate(now.getDate() - now.getDay());
     const weekKey = startOfWeek.toISOString().split('T')[0];
-
-    weeklyReviews[weekKey] = {
-      good: document.getElementById('revGood').value.trim(),
-      hard: document.getElementById('revHard').value.trim()
-    };
-    saveData();
-    alert('주간 리뷰가 안전하게 저장되었습니다.');
+    weeklyReviews[weekKey] = { good: document.getElementById('revGood').value.trim(), hard: document.getElementById('revHard').value.trim() };
+    saveData(); alert('주간 리뷰가 안전하게 저장되었습니다.');
   }
 
   function exportJSON() {
-    const exportObj = { logs: practiceLogs, reviews: weeklyReviews };
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
-    const a = document.createElement('a');
-    a.href = dataStr;
-    a.download = `cello_practice_backup_${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ logs: practiceLogs, reviews: weeklyReviews }, null, 2));
+    const a = document.createElement('a'); a.href = dataStr; a.download = `cello_practice_backup_${new Date().toISOString().split('T')[0]}.json`; a.click();
   }
 
   function exportCSV() {
-    let csv = "\uFEFF날짜,곡명,연습시간(분),손풀기(회),테크닉(회),부분연습(회),전체연습(회),메모\n";
+    let csv = "\uFEFF날짜,곡명,연습시간(분),템포(BPM),손풀기(회),테크닉(회),부분연습(회),전체연습(회),메모\n";
     practiceLogs.forEach(log => {
       const rd = log.routineDetails || {};
-      csv += `"${log.date}","${log.piece.replace(/"/g, '""')}",${log.duration},${rd.warmup || 0},${rd.tech || 0},${rd.part || 0},${rd.full || 0},"${(log.memo || '').replace(/"/g, '""')}"\n`;
+      csv += `"${log.date}","${log.piece.replace(/"/g, '""')}",${log.duration},${log.bpm || ''},${rd.warmup || 0},${rd.tech || 0},${rd.part || 0},${rd.full || 0},"${(log.memo || '').replace(/"/g, '""')}"\n`;
     });
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `cello_practice_logs_${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8;' })); a.download = `cello_practice_logs_${new Date().toISOString().split('T')[0]}.csv`; a.click();
   }
 
   function importJSON(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+    const file = event.target.files[0]; if (!file) return;
     const reader = new FileReader();
     reader.onload = function(e) {
       try {
         const imported = JSON.parse(e.target.result);
-        if (Array.isArray(imported)) {
-          practiceLogs = imported;
-        } else if (imported.logs) {
-          practiceLogs = imported.logs || [];
-          weeklyReviews = imported.reviews || {};
-        }
-        saveData();
-        renderAll();
-        alert('데이터를 성공적으로 복원했습니다.');
-      } catch (err) {
-        alert('파일을 읽는 중 오류가 발생했습니다.');
-      }
+        if (Array.isArray(imported)) practiceLogs = imported;
+        else if (imported.logs) { practiceLogs = imported.logs || []; weeklyReviews = imported.reviews || {}; }
+        saveData(); renderAll(); alert('데이터를 성공적으로 복원했습니다.');
+      } catch (err) { alert('파일을 읽는 중 오류가 발생했습니다.'); }
     };
     reader.readAsText(file);
   }
 
-  function escapeHtml(str) {
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-  }
+  function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 </script>
 </body>
 </html>
