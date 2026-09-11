@@ -26,79 +26,65 @@
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
-      padding: 24px 16px;
+      padding: 16px;
       line-height: 1.5;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    header {
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 16px;
+    /* 상단 메인 탭 */
+    .tab-nav {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      color: var(--accent-gold);
-    }
-
-    .subtitle {
-      color: var(--text-sub);
-      font-size: 0.9rem;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .stat-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background-color: #1a1c23;
       border-radius: 12px;
-      padding: 16px;
+      padding: 4px;
+      margin-bottom: 16px;
+      border: 1px solid var(--card-border);
     }
 
-    .stat-title {
-      font-size: 0.85rem;
+    .tab-btn {
+      flex: 1;
+      padding: 12px;
+      background: none;
+      border: none;
       color: var(--text-sub);
-      margin-bottom: 4px;
-    }
-
-    .stat-value {
-      font-size: 1.6rem;
+      font-size: 0.95rem;
       font-weight: bold;
-      color: var(--text-main);
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
     }
 
-    .stat-value span {
-      font-size: 0.9rem;
-      color: var(--text-sub);
-      font-weight: normal;
+    .tab-btn.active {
+      background-color: var(--card-bg);
+      color: var(--accent-gold);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 24px;
+    /* 상단 배너 */
+    .streak-banner {
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    @media (max-width: 768px) {
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
     }
 
     .card {
@@ -106,10 +92,11 @@
       border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 20px;
+      margin-bottom: 16px;
     }
 
     .card-title {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--accent-gold);
       margin-bottom: 16px;
       font-weight: bold;
@@ -152,7 +139,7 @@
       accent-color: var(--accent-gold);
     }
 
-    /* 루틴별 세부 횟수 입력 그리드 */
+    /* 루틴별 세부 횟수 */
     .routine-count-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -214,11 +201,6 @@
       cursor: pointer;
       width: 100%;
       font-size: 0.95rem;
-      transition: background 0.2s;
-    }
-
-    .btn:hover {
-      background-color: var(--accent-gold-hover);
     }
 
     .btn-secondary {
@@ -227,45 +209,105 @@
       color: var(--text-main);
     }
 
-    .btn-secondary:hover {
-      background-color: #2a2e38;
+    /* 분석 탭 통계 카드 */
+    .stat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .routine-box {
+    .stat-box {
       background-color: #141518;
       border: 1px solid var(--card-border);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 16px;
-      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
-    .routine-item {
-      margin-bottom: 12px;
-    }
-
-    .routine-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .routine-tag {
-      display: inline-block;
-      font-size: 0.75rem;
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       background-color: rgba(212, 175, 55, 0.15);
       color: var(--accent-gold);
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
     }
 
-    .routine-desc {
-      font-size: 0.9rem;
+    .stat-info .title {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .stat-info .val {
+      font-size: 1.3rem;
+      font-weight: bold;
       color: var(--text-main);
     }
 
-    .history-section {
-      margin-top: 24px;
+    .stat-info .sub {
+      font-size: 0.75rem;
+      color: var(--text-sub);
     }
 
+    /* 차트 컨테이너 */
+    .chart-container {
+      height: 180px;
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      padding-top: 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .bar-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar {
+      width: 100%;
+      background-color: var(--accent-gold);
+      border-radius: 3px 3px 0 0;
+      min-height: 2px;
+    }
+
+    .bar-label {
+      font-size: 0.65rem;
+      color: var(--text-sub);
+      margin-top: 6px;
+    }
+
+    /* 리뷰 탭 요약 박스 */
+    .summary-box {
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .summary-box h4 {
+      color: var(--accent-gold);
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .summary-box p {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    /* 테이블 */
     .table-container {
       overflow-x: auto;
     }
@@ -273,18 +315,17 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     th, td {
-      padding: 12px;
+      padding: 10px;
       border-bottom: 1px solid var(--card-border);
+      text-align: left;
     }
 
     th {
       color: var(--text-sub);
-      font-weight: 500;
       background-color: #16171c;
     }
 
@@ -293,18 +334,29 @@
       border: none;
       color: var(--danger);
       cursor: pointer;
-      font-size: 0.85rem;
     }
 
-    .backup-actions {
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      background-color: #2a2e38;
+      color: var(--accent-gold);
+      margin-right: 2px;
+      margin-top: 2px;
+    }
+
+    .backup-bar {
       display: flex;
+      justify-content: flex-end;
       gap: 8px;
+      margin-bottom: 12px;
     }
 
     .file-input-wrapper {
       position: relative;
       overflow: hidden;
-      display: inline-block;
     }
 
     .file-input-wrapper input[type=file] {
@@ -315,66 +367,37 @@
       opacity: 0;
       cursor: pointer;
     }
-
-    .badge-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      background-color: #2a2e38;
-      color: var(--accent-gold);
-    }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <header>
-    <div>
-      <h1>🎻 첼로 연습일지</h1>
-      <p class="subtitle">기록하고, 돌아보고, 더 나아가기</p>
-    </div>
-    <div class="backup-actions">
-      <button class="btn btn-secondary" onclick="exportJSON()">JSON 백업</button>
-      <button class="btn btn-secondary" onclick="exportCSV()">CSV 엑셀 저장</button>
-      <div class="file-input-wrapper">
-        <button class="btn btn-secondary">JSON 불러오기</button>
-        <input type="file" id="importFile" accept=".json" onchange="importJSON(event)">
-      </div>
-    </div>
-  </header>
-
-  <!-- 통계 대시보드 -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-title">이번 주 연습 시간</div>
-      <div class="stat-value" id="weeklyMin">0<span> 분</span></div>
-      <div class="stat-title" style="margin-top: 4px;">목표 315분</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">연속 연습 달성</div>
-      <div class="stat-value" id="streakDays">0<span> 일 연속</span></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">이번 주 연습일</div>
-      <div class="stat-value" id="weeklyDays">0<span> 일</span></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">총 누적 연습</div>
-      <div class="stat-value" id="totalMin">0<span> 분</span></div>
+  <!-- 백업 버튼 -->
+  <div class="backup-bar">
+    <button class="btn btn-secondary" style="width:auto; padding:6px 12px; font-size:0.8rem;" onclick="exportJSON()">JSON 백업</button>
+    <button class="btn btn-secondary" style="width:auto; padding:6px 12px; font-size:0.8rem;" onclick="exportCSV()">CSV 엑셀 저장</button>
+    <div class="file-input-wrapper">
+      <button class="btn btn-secondary" style="width:auto; padding:6px 12px; font-size:0.8rem;">복원</button>
+      <input type="file" id="importFile" accept=".json" onchange="importJSON(event)">
     </div>
   </div>
 
-  <div class="main-grid">
-    <!-- 연습 기록 입력 폼 -->
+  <!-- 상단 메인 탭 메뉴 -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('logTab', this)">🎵 연습 기록</button>
+    <button class="tab-btn" onclick="switchTab('analysisTab', this)">📊 분석</button>
+    <button class="tab-btn" onclick="switchTab('reviewTab', this)">📖 리뷰</button>
+  </div>
+
+  <!-- 연속 연습 배너 -->
+  <div class="streak-banner">
+    🔥 <span id="streakDisplay">0일 연속 연습 중</span>
+  </div>
+
+  <!-- 1. 연습 기록 탭 -->
+  <div id="logTab" class="tab-content active">
     <div class="card">
-      <div class="card-title">오늘의 연습 기록</div>
+      <div class="card-title">오늘의 기록</div>
       <form id="logForm">
         <div class="form-group">
           <label for="logDate">연습 날짜</label>
@@ -383,7 +406,7 @@
 
         <div class="form-group">
           <label for="logPiece">연습 곡명</label>
-          <input type="text" id="logPiece" placeholder="예: 윌리엄 텔 서곡, 파헬벨 캐논" required>
+          <input type="text" id="logPiece" placeholder="예: 슈만 두 사람의 척탄병, 윌리엄 텔" required>
         </div>
 
         <div class="form-group">
@@ -393,9 +416,8 @@
           </div>
         </div>
 
-        <!-- 세부 루틴별 횟수 입력 섹션 -->
         <div class="form-group">
-          <label>루틴별 연습 횟수 설정</label>
+          <label>루틴별 연습 횟수</label>
           <div class="routine-count-grid">
             <div class="routine-count-item">
               <span class="routine-label">손풀기</span>
@@ -441,78 +463,116 @@
       </form>
     </div>
 
-    <!-- 곡별 맞춤 루틴 생성기 -->
+    <!-- 연습 일지 목록 -->
     <div class="card">
-      <div class="card-title">곡별 맞춤 루틴 생성기</div>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">
-        연습 곡명을 입력하고 생성 버튼을 누르면 맞춤 루틴을 제안합니다.
-      </p>
-
-      <div class="form-group">
-        <input type="text" id="customPieceInput" placeholder="예: 슈만 두 사람의 척탄병">
-      </div>
-
-      <button class="btn btn-secondary" onclick="generateRoutine()">✨ 루틴 생성</button>
-
-      <div class="routine-box" id="routineResult" style="display: none;">
-        <h4 id="routinePieceTitle" style="color: var(--accent-gold); margin-bottom: 12px; font-size: 1rem;"></h4>
-        
-        <div class="routine-item">
-          <div class="routine-tag">1단계: 조성 스케일</div>
-          <div class="routine-desc" id="rtScale"></div>
-        </div>
-        <div class="routine-item">
-          <div class="routine-tag">2단계: 아티큘레이션</div>
-          <div class="routine-desc" id="rtArtic"></div>
-        </div>
-        <div class="routine-item">
-          <div class="routine-tag">3단계: 붓점 리듬</div>
-          <div class="routine-desc" id="rtRhythm"></div>
-        </div>
-        <div class="routine-item">
-          <div class="routine-tag">4단계: 부분 연습 순서</div>
-          <div class="routine-desc" id="rtSection"></div>
-        </div>
+      <div class="card-title">연습 일지 목록</div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>날짜</th>
+              <th>곡명</th>
+              <th>시간</th>
+              <th>세부 횟수</th>
+              <th>메모</th>
+              <th>삭제</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <!-- 연습 기록 목록 -->
-  <div class="card history-section">
-    <div class="card-title">연습 일지 목록</div>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>날짜</th>
-            <th>곡명</th>
-            <th>연습 시간</th>
-            <th>세부 루틴 횟수</th>
-            <th>메모</th>
-            <th>삭제</th>
-          </tr>
-        </thead>
-        <tbody id="historyTableBody">
-        </tbody>
-      </table>
+  <!-- 2. 분석 탭 -->
+  <div id="analysisTab" class="tab-content">
+    <div class="stat-list">
+      <div class="stat-box">
+        <div class="stat-icon">🕒</div>
+        <div class="stat-info">
+          <div class="title">누적 연습시간</div>
+          <div class="val" id="anTotalMin">0분</div>
+          <div class="sub" id="anTotalDays">0일 기록</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">📊</div>
+        <div class="stat-info">
+          <div class="title">하루 평균</div>
+          <div class="val" id="anAvgMin">0분</div>
+          <div class="sub">연습한 날 기준</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">🎵</div>
+        <div class="stat-info">
+          <div class="title">연습곡 수</div>
+          <div class="val" id="anPieceCount">0곡</div>
+          <div class="sub">전체 기간</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">최근 30일 연습시간</div>
+      <p style="font-size:0.8rem; color:var(--text-sub);">날짜별 연습량의 흐름을 확인하세요.</p>
+      <div class="chart-container" id="chartContainer">
+      </div>
     </div>
   </div>
+
+  <!-- 3. 리뷰 탭 -->
+  <div id="reviewTab" class="tab-content">
+    <div class="card">
+      <div class="card-title" id="reviewWeekTitle">주간 돌아보기</div>
+      
+      <div class="summary-box">
+        <h4>💡 자동 요약</h4>
+        <p id="reviewAutoSummary">이번 주 0일 동안 총 0분을 연습했습니다. 기록을 남기면 자동 분석이 시작됩니다.</p>
+      </div>
+
+      <form id="reviewForm">
+        <div class="form-group">
+          <label for="revGood">잘된 점</label>
+          <textarea id="revGood" rows="3" placeholder="예: 매일 활 배분을 표시하고 연습했다."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="revHard">어려웠던 점</label>
+          <textarea id="revHard" rows="3" placeholder="예: 빠른 붓점 리듬에서 왼손이 긴장했다."></textarea>
+        </div>
+
+        <button type="button" class="btn" onclick="saveReview()">주간 리뷰 저장</button>
+      </form>
+    </div>
+  </div>
+
 </div>
 
 <script>
   let practiceLogs = JSON.parse(localStorage.getItem('celloLogs') || '[]');
+  let weeklyReviews = JSON.parse(localStorage.getItem('celloReviews') || '{}');
   
-  let routineCounts = {
-    warmup: 0,
-    tech: 0,
-    part: 0,
-    full: 0
-  };
+  let routineCounts = { warmup: 0, tech: 0, part: 0, full: 0 };
 
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logDate').valueAsDate = new Date();
     renderAll();
   });
+
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(tb => tb.classList.remove('active'));
+    
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+
+    if (tabId === 'analysisTab') renderAnalysis();
+    if (tabId === 'reviewTab') renderReview();
+  }
 
   function updateTimeDisplay(val) {
     document.getElementById('timeDisplay').innerText = val + '분';
@@ -543,7 +603,6 @@
     saveData();
     renderAll();
 
-    // 폼 초기화
     document.getElementById('logPiece').value = '';
     document.getElementById('logMemo').value = '';
     routineCounts = { warmup: 0, tech: 0, part: 0, full: 0 };
@@ -562,11 +621,12 @@
 
   function saveData() {
     localStorage.setItem('celloLogs', JSON.stringify(practiceLogs));
+    localStorage.setItem('celloReviews', JSON.stringify(weeklyReviews));
   }
 
   function renderAll() {
     renderHistory();
-    calculateStats();
+    calculateStreak();
   }
 
   function renderHistory() {
@@ -574,27 +634,24 @@
     tbody.innerHTML = '';
 
     if (practiceLogs.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-sub);">저장된 연습 기록이 없습니다.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-sub);">저장된 기록이 없습니다.</td></tr>';
       return;
     }
 
     practiceLogs.forEach(log => {
       const tr = document.createElement('tr');
-      
       const rd = log.routineDetails || {};
       const badges = [];
       if (rd.warmup) badges.push(`<span class="badge">손풀기 ${rd.warmup}회</span>`);
       if (rd.tech) badges.push(`<span class="badge">테크닉 ${rd.tech}회</span>`);
-      if (rd.part) badges.push(`<span class="badge">부분연습 ${rd.part}회</span>`);
-      if (rd.full) badges.push(`<span class="badge">전체연습 ${rd.full}회</span>`);
-
-      const badgeHTML = badges.length > 0 ? `<div class="badge-group">${badges.join('')}</div>` : '-';
+      if (rd.part) badges.push(`<span class="badge">부분 ${rd.part}회</span>`);
+      if (rd.full) badges.push(`<span class="badge">전체 ${rd.full}회</span>`);
 
       tr.innerHTML = `
         <td>${log.date}</td>
         <td><strong>${escapeHtml(log.piece)}</strong></td>
         <td>${log.duration}분</td>
-        <td>${badgeHTML}</td>
+        <td>${badges.join('') || '-'}</td>
         <td>${escapeHtml(log.memo || '-')}</td>
         <td><button class="action-btn" onclick="deleteLog(${log.id})">삭제</button></td>
       `;
@@ -602,29 +659,7 @@
     });
   }
 
-  function calculateStats() {
-    const totalMin = practiceLogs.reduce((acc, log) => acc + log.duration, 0);
-    
-    let totalSessions = 0;
-    practiceLogs.forEach(log => {
-      const rd = log.routineDetails || {};
-      totalSessions += (rd.warmup || 0) + (rd.tech || 0) + (rd.part || 0) + (rd.full || 0);
-    });
-
-    document.getElementById('totalMin').innerHTML = `${totalMin}<span> 분 (총 ${totalSessions}회)</span>`;
-
-    const now = new Date();
-    const startOfWeek = new Date(now);
-    startOfWeek.setDate(now.getDate() - now.getDay());
-    startOfWeek.setHours(0, 0, 0, 0);
-
-    const weeklyLogs = practiceLogs.filter(log => new Date(log.date) >= startOfWeek);
-    const weeklyMin = weeklyLogs.reduce((acc, log) => acc + log.duration, 0);
-    document.getElementById('weeklyMin').innerHTML = `${weeklyMin}<span> 분</span>`;
-
-    const uniqueDays = new Set(weeklyLogs.map(log => log.date));
-    document.getElementById('weeklyDays').innerHTML = `${uniqueDays.size}<span> 일</span>`;
-
+  function calculateStreak() {
     let streak = 0;
     const sortedDates = [...new Set(practiceLogs.map(l => l.date))].sort().reverse();
     let checkDate = new Date();
@@ -640,40 +675,96 @@
         if (sortedDates.includes(yesterdayStr)) {
           streak++;
           checkDate.setDate(checkDate.getDate() - 1);
-        } else {
-          break;
-        }
-      } else {
-        break;
-      }
+        } else break;
+      } else break;
     }
-    document.getElementById('streakDays').innerHTML = `${streak}<span> 일 연속</span>`;
+    document.getElementById('streakDisplay').innerText = `${streak}일 연속 연습 중`;
   }
 
-  function generateRoutine() {
-    const title = document.getElementById('customPieceInput').value.trim();
-    if (!title) {
-      alert('곡명을 입력해주세요.');
-      return;
+  /* 분석 탭 계산 */
+  function renderAnalysis() {
+    const totalMin = practiceLogs.reduce((acc, log) => acc + log.duration, 0);
+    const uniqueDays = new Set(practiceLogs.map(log => log.date)).size;
+    const avgMin = uniqueDays > 0 ? Math.round(totalMin / uniqueDays) : 0;
+    const pieces = new Set(practiceLogs.map(log => log.piece)).size;
+
+    document.getElementById('anTotalMin').innerText = `${totalMin}분`;
+    document.getElementById('anTotalDays').innerText = `${uniqueDays}일 기록`;
+    document.getElementById('anAvgMin').innerText = `${avgMin}분`;
+    document.getElementById('anPieceCount').innerText = `${pieces}곡`;
+
+    // 30일 그래프 생성
+    const chart = document.getElementById('chartContainer');
+    chart.innerHTML = '';
+    
+    const today = new Date();
+    let maxMin = 1;
+    const dailyData = [];
+
+    for (let i = 29; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      const sumMin = practiceLogs.filter(l => l.date === dateStr).reduce((acc, l) => acc + l.duration, 0);
+      if (sumMin > maxMin) maxMin = sumMin;
+      dailyData.push({ dateStr: dateStr.slice(8), min: sumMin });
     }
 
-    document.getElementById('routineResult').style.display = 'block';
-    document.getElementById('routinePieceTitle').innerText = `[${title}] 맞춤 루틴 제안`;
+    dailyData.forEach(d => {
+      const heightPct = Math.round((d.min / maxMin) * 100);
+      const barWrapper = document.createElement('div');
+      barWrapper.className = 'bar-wrapper';
+      barWrapper.innerHTML = `
+        <div class="bar" style="height: ${heightPct}%;" title="${d.min}분"></div>
+        <div class="bar-label">${d.dateStr}</div>
+      `;
+      chart.appendChild(barWrapper);
+    });
+  }
 
-    document.getElementById('rtScale').innerText = `'${title}'의 주요 조성 스케일 및 2옥타브/3옥타브 아르페지오 음정 점검`;
-    document.getElementById('rtArtic').innerText = `활 위치 고정 및 레가토/스타카토 아티큘레이션 분리 연습`;
-    document.getElementById('rtRhythm').innerText = `어려운 패시지 구간 붓점 및 역붓점 리듬 변형 연습`;
-    document.getElementById('rtSection').innerText = `어려운 마디 4개 선정 후 템포 늦추어 반복 후 정상 템포 도달`;
+  /* 리뷰 탭 계산 */
+  function renderReview() {
+    const now = new Date();
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - now.getDay());
+    startOfWeek.setHours(0, 0, 0, 0);
+
+    const weekLogs = practiceLogs.filter(log => new Date(log.date) >= startOfWeek);
+    const weekMin = weekLogs.reduce((acc, l) => acc + l.duration, 0);
+    const weekDays = new Set(weekLogs.map(l => l.date)).size;
+
+    const weekKey = startOfWeek.toISOString().split('T')[0];
+    document.getElementById('reviewWeekTitle').innerText = `${weekKey} 주간 돌아보기`;
+
+    document.getElementById('reviewAutoSummary').innerText = 
+      `이번 주 ${weekDays}일 동안 총 ${weekMin}분을 연습했습니다.` + (weekLogs.length > 0 ? " 꾸준한 성장을 응원합니다!" : " 첫 기록을 남기면 자동 분석이 시작됩니다.");
+
+    const curReview = weeklyReviews[weekKey] || {};
+    document.getElementById('revGood').value = curReview.good || '';
+    document.getElementById('revHard').value = curReview.hard || '';
+  }
+
+  function saveReview() {
+    const now = new Date();
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - now.getDay());
+    const weekKey = startOfWeek.toISOString().split('T')[0];
+
+    weeklyReviews[weekKey] = {
+      good: document.getElementById('revGood').value.trim(),
+      hard: document.getElementById('revHard').value.trim()
+    };
+    saveData();
+    alert('주간 리뷰가 안전하게 저장되었습니다.');
   }
 
   function exportJSON() {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(practiceLogs, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `cello_practice_logs_${new Date().toISOString().split('T')[0]}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
+    const exportObj = { logs: practiceLogs, reviews: weeklyReviews };
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+    const a = document.createElement('a');
+    a.href = dataStr;
+    a.download = `cello_practice_backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
   }
 
   function exportCSV() {
@@ -683,9 +774,8 @@
       csv += `"${log.date}","${log.piece.replace(/"/g, '""')}",${log.duration},${rd.warmup || 0},${rd.tech || 0},${rd.part || 0},${rd.full || 0},"${(log.memo || '').replace(/"/g, '""')}"\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
+    a.href = URL.createObjectURL(blob);
     a.download = `cello_practice_logs_${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
   }
@@ -693,19 +783,19 @@
   function importJSON(event) {
     const file = event.target.files[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = function(e) {
       try {
         const imported = JSON.parse(e.target.result);
         if (Array.isArray(imported)) {
           practiceLogs = imported;
-          saveData();
-          renderAll();
-          alert('연습일지 데이터를 성공적으로 복원했습니다.');
-        } else {
-          alert('올바르지 않은 JSON 데이터 형식입니다.');
+        } else if (imported.logs) {
+          practiceLogs = imported.logs || [];
+          weeklyReviews = imported.reviews || {};
         }
+        saveData();
+        renderAll();
+        alert('데이터를 성공적으로 복원했습니다.');
       } catch (err) {
         alert('파일을 읽는 중 오류가 발생했습니다.');
       }
