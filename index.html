@@ -156,12 +156,69 @@
       accent-color: var(--accent-gold);
     }
 
+    /* 연습 횟수 스퍼너 */
+    .count-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #141518;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 4px;
+    }
+
+    .count-btn {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 36px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .count-btn:hover {
+      background-color: var(--card-border);
+    }
+
+    .count-display {
+      font-weight: bold;
+      color: var(--accent-gold);
+    }
+
+    /* 루틴 선택 태그 버튼 */
+    .routine-tag-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .tag-btn {
+      background-color: #141518;
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .tag-btn.active {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+      background-color: rgba(212, 175, 55, 0.1);
+      font-weight: bold;
+    }
+
     .btn {
       background-color: var(--accent-gold);
       color: #000;
       border: none;
       border-radius: 6px;
-      padding: 10px 16px;
+      padding: 12px 16px;
       font-weight: bold;
       cursor: pointer;
       width: 100%;
@@ -183,12 +240,6 @@
       background-color: #2a2e38;
     }
 
-    .btn-group {
-      display: flex;
-      gap: 8px;
-    }
-
-    /* 루틴 제안 상자 */
     .routine-box {
       background-color: #141518;
       border: 1px solid var(--card-border);
@@ -220,7 +271,6 @@
       color: var(--text-main);
     }
 
-    /* 연습 일지 목록 */
     .history-section {
       margin-top: 24px;
     }
@@ -274,6 +324,17 @@
       opacity: 0;
       cursor: pointer;
     }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      background-color: #2a2e38;
+      color: var(--accent-gold);
+      margin-right: 4px;
+      margin-top: 4px;
+    }
   </style>
 </head>
 <body>
@@ -285,7 +346,7 @@
       <p class="subtitle">기록하고, 돌아보고, 더 나아가기</p>
     </div>
     <div class="backup-actions">
-      <button class="btn btn-secondary" onclick="exportJSON()">JSON 저장</button>
+      <button class="btn btn-secondary" onclick="exportJSON()">JSON 백업</button>
       <button class="btn btn-secondary" onclick="exportCSV()">CSV 엑셀 저장</button>
       <div class="file-input-wrapper">
         <button class="btn btn-secondary">JSON 불러오기</button>
@@ -338,11 +399,30 @@
         </div>
 
         <div class="form-group">
-          <label for="logMemo">연습 메모 & 체크포인트</label>
-          <textarea id="logMemo" rows="3" placeholder="오늘 집중한 부분, 음정 점검, 아티큘레이션 메모 등"></textarea>
+          <label>연습 횟수</label>
+          <div class="count-control">
+            <button type="button" class="count-btn" onclick="adjustCount(-1)">-</button>
+            <span class="count-display" id="countDisplay">1회</span>
+            <button type="button" class="count-btn" onclick="adjustCount(1)">+</button>
+          </div>
         </div>
 
-        <button type="submit" class="btn">연습 일지 저장하기</button>
+        <div class="form-group">
+          <label>연습 루틴 선택 (다중 선택 가능)</label>
+          <div class="routine-tag-grid">
+            <div class="tag-btn" onclick="toggleTag(this, '손풀기')">손풀기</div>
+            <div class="tag-btn" onclick="toggleTag(this, '테크닉')">테크닉</div>
+            <div class="tag-btn" onclick="toggleTag(this, '부분 연습')">부분 연습</div>
+            <div class="tag-btn" onclick="toggleTag(this, '전체 연습')">전체 연습</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="logMemo">오늘의 메모</label>
+          <textarea id="logMemo" rows="3" placeholder="잘된 점, 어려웠던 부분, 내일 이어갈 내용을 적어보세요."></textarea>
+        </div>
+
+        <button type="submit" class="btn">💾 연습 기록 저장</button>
       </form>
     </div>
 
@@ -350,14 +430,14 @@
     <div class="card">
       <div class="card-title">곡별 맞춤 루틴 생성기</div>
       <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">
-        연습하고자 하는 <strong>어떤 곡명이든</strong> 입력하고 버튼을 누르면 연습 순서와 포인트를 추천합니다.
+        연습 곡명을 입력하고 생성 버튼을 누르면 맞춤 루틴을 제안합니다.
       </p>
 
       <div class="form-group">
-        <input type="text" id="customPieceInput" placeholder="곡명을 자유롭게 입력하세요 (예: 엘가 협주곡)">
+        <input type="text" id="customPieceInput" placeholder="예: 슈만 두 사람의 척탄병">
       </div>
 
-      <button class="btn btn-secondary" onclick="generateRoutine()">맞춤 루틴 생성</button>
+      <button class="btn btn-secondary" onclick="generateRoutine()">✨ 루틴 생성</button>
 
       <div class="routine-box" id="routineResult" style="display: none;">
         <h4 id="routinePieceTitle" style="color: var(--accent-gold); margin-bottom: 12px; font-size: 1rem;"></h4>
@@ -367,15 +447,15 @@
           <div class="routine-desc" id="rtScale"></div>
         </div>
         <div class="routine-item">
-          <div class="routine-tag">2단계: 활 다루기 & 아티큘레이션</div>
+          <div class="routine-tag">2단계: 아티큘레이션</div>
           <div class="routine-desc" id="rtArtic"></div>
         </div>
         <div class="routine-item">
-          <div class="routine-tag">3단계: 리듬 연습</div>
+          <div class="routine-tag">3단계: 붓점 리듬</div>
           <div class="routine-desc" id="rtRhythm"></div>
         </div>
         <div class="routine-item">
-          <div class="routine-tag">4단계: 마디 분해 및 부분 연습</div>
+          <div class="routine-tag">4단계: 부분 연습 순서</div>
           <div class="routine-desc" id="rtSection"></div>
         </div>
       </div>
@@ -391,13 +471,13 @@
           <tr>
             <th>날짜</th>
             <th>곡명</th>
-            <th>연습 시간</th>
+            <th>시간 / 횟수</th>
+            <th>루틴</th>
             <th>메모</th>
             <th>삭제</th>
           </tr>
         </thead>
         <tbody id="historyTableBody">
-          <!-- 데이터가 여기에 동적으로 추가됨 -->
         </tbody>
       </table>
     </div>
@@ -406,6 +486,8 @@
 
 <script>
   let practiceLogs = JSON.parse(localStorage.getItem('celloLogs') || '[]');
+  let currentCount = 1;
+  let selectedTags = [];
 
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logDate').valueAsDate = new Date();
@@ -414,6 +496,20 @@
 
   function updateTimeDisplay(val) {
     document.getElementById('timeDisplay').innerText = val + '분';
+  }
+
+  function adjustCount(delta) {
+    currentCount = Math.max(1, currentCount + delta);
+    document.getElementById('countDisplay').innerText = currentCount + '회';
+  }
+
+  function toggleTag(btn, tagName) {
+    btn.classList.toggle('active');
+    if (selectedTags.includes(tagName)) {
+      selectedTags = selectedTags.filter(t => t !== tagName);
+    } else {
+      selectedTags.push(tagName);
+    }
   }
 
   document.getElementById('logForm').addEventListener('submit', (e) => {
@@ -428,6 +524,8 @@
       date,
       piece,
       duration,
+      count: currentCount,
+      routines: [...selectedTags],
       memo
     };
 
@@ -435,8 +533,13 @@
     saveData();
     renderAll();
 
+    // 폼 초기화
     document.getElementById('logPiece').value = '';
     document.getElementById('logMemo').value = '';
+    currentCount = 1;
+    document.getElementById('countDisplay').innerText = '1회';
+    selectedTags = [];
+    document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
   });
 
   function deleteLog(id) {
@@ -461,16 +564,18 @@
     tbody.innerHTML = '';
 
     if (practiceLogs.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--text-sub);">저장된 연습 기록이 없습니다.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-sub);">저장된 연습 기록이 없습니다.</td></tr>';
       return;
     }
 
     practiceLogs.forEach(log => {
       const tr = document.createElement('tr');
+      const routineBadges = (log.routines || []).map(r => `<span class="badge">${r}</span>`).join('') || '-';
       tr.innerHTML = `
         <td>${log.date}</td>
         <td><strong>${escapeHtml(log.piece)}</strong></td>
-        <td>${log.duration}분</td>
+        <td>${log.duration}분 / ${log.count || 1}회</td>
+        <td>${routineBadges}</td>
         <td>${escapeHtml(log.memo || '-')}</td>
         <td><button class="action-btn" onclick="deleteLog(${log.id})">삭제</button></td>
       `;
@@ -480,7 +585,8 @@
 
   function calculateStats() {
     const totalMin = practiceLogs.reduce((acc, log) => acc + log.duration, 0);
-    document.getElementById('totalMin').innerHTML = `${totalMin}<span> 분</span>`;
+    const totalCount = practiceLogs.reduce((acc, log) => acc + (log.count || 1), 0);
+    document.getElementById('totalMin').innerHTML = `${totalMin}<span> 분 (${totalCount}회)</span>`;
 
     const now = new Date();
     const startOfWeek = new Date(now);
@@ -494,7 +600,6 @@
     const uniqueDays = new Set(weeklyLogs.map(log => log.date));
     document.getElementById('weeklyDays').innerHTML = `${uniqueDays.size}<span> 일</span>`;
 
-    // 연속 연습일 계산
     let streak = 0;
     const sortedDates = [...new Set(practiceLogs.map(l => l.date))].sort().reverse();
     let checkDate = new Date();
@@ -520,7 +625,6 @@
     document.getElementById('streakDays').innerHTML = `${streak}<span> 일 연속</span>`;
   }
 
-  // 동적 루틴 생성기 (어떤 곡명이든 대응)
   function generateRoutine() {
     const title = document.getElementById('customPieceInput').value.trim();
     if (!title) {
@@ -529,15 +633,14 @@
     }
 
     document.getElementById('routineResult').style.display = 'block';
-    document.getElementById('routinePieceTitle').innerText = `[${title}] 맞춤 연습 루틴`;
+    document.getElementById('routinePieceTitle').innerText = `[${title}] 맞춤 루틴 제안`;
 
-    document.getElementById('rtScale').innerText = `'${title}'의 주요 조성에 맞춘 2/3옥타브 스케일 및 아르페지오 연습 (음정 정확도 점검)`;
-    document.getElementById('rtArtic').innerText = `활 분배 조절, 레가토 이음새 부드럽게 이어주기 및 스타카토 구간의 명확한 아티큘레이션 구분`;
-    document.getElementById('rtRhythm').innerText = `당김음 및 까다로운 패시지를 붓점/역붓점 리듬으로 변화시켜 템포 안정화`;
-    document.getElementById('rtSection').innerText = `가장 도약이 크거나 빠른 마디 4개 선정 후 메트로놈 슬로우 템포부터 5bpm씩 올려 연습`;
+    document.getElementById('rtScale').innerText = `'${title}'의 주요 조성 스케일 및 2옥타브/3옥타브 아르페지오 음정 점검`;
+    document.getElementById('rtArtic').innerText = `활 위치 고정 및 레가토/스타카토 아티큘레이션 분리 연습`;
+    document.getElementById('rtRhythm').innerText = `어려운 패시지 구간 붓점 및 역붓점 리듬 변형 연습`;
+    document.getElementById('rtSection').innerText = `어려운 마디 4개 선정 후 템포 늦추어 반복 후 정상 템포 도달`;
   }
 
-  // 데이터 내보내기/불러오기
   function exportJSON() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(practiceLogs, null, 2));
     const downloadAnchor = document.createElement('a');
@@ -549,9 +652,10 @@
   }
 
   function exportCSV() {
-    let csv = "\uFEFF날짜,곡명,연습시간(분),메모\n";
+    let csv = "\uFEFF날짜,곡명,연습시간(분),연습횟수,루틴,메모\n";
     practiceLogs.forEach(log => {
-      csv += `"${log.date}","${log.piece.replace(/"/g, '""')}",${log.duration},"${(log.memo || '').replace(/"/g, '""')}"\n`;
+      const routinesStr = (log.routines || []).join(';');
+      csv += `"${log.date}","${log.piece.replace(/"/g, '""')}",${log.duration},${log.count || 1},"${routinesStr}","${(log.memo || '').replace(/"/g, '""')}"\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
