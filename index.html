@@ -15,70 +15,54 @@
       --text-sub: #9ca3af;
       --danger: #e74c3c;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg-dark); color: var(--text-main); padding: 16px; line-height: 1.5; }
     .container { max-width: 800px; margin: 0 auto; }
-
     .backup-bar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 12px; }
     .file-input-wrapper { position: relative; overflow: hidden; }
     .file-input-wrapper input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
-
     .tab-nav { display: flex; background-color: #1a1c23; border-radius: 12px; padding: 4px; margin-bottom: 16px; border: 1px solid var(--card-border); }
     .tab-btn { flex: 1; padding: 12px; background: none; border: none; color: var(--text-sub); font-size: 0.95rem; font-weight: bold; border-radius: 8px; cursor: pointer; text-align: center; }
     .tab-btn.active { background-color: var(--card-bg); color: var(--accent-gold); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-
     .banner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
     .banner-card { background-color: rgba(212, 175, 55, 0.1); border: 1px solid var(--accent-gold); color: var(--accent-gold); border-radius: 10px; padding: 12px; font-weight: bold; text-align: center; font-size: 0.9rem; }
-
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-
     .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
     .card-title { font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 16px; font-weight: bold; }
-
     .form-group { margin-bottom: 16px; }
     label { display: block; font-size: 0.85rem; color: var(--text-sub); margin-bottom: 6px; }
     input[type="text"], input[type="number"], input[type="date"], textarea { width: 100%; background-color: #141518; border: 1px solid var(--card-border); border-radius: 6px; padding: 10px 12px; color: var(--text-main); font-size: 0.95rem; }
     input:focus, textarea:focus { outline: none; border-color: var(--accent-gold); }
-
     .slider-container { display: flex; align-items: center; gap: 12px; }
     input[type="range"] { flex: 1; accent-color: var(--accent-gold); }
-
     .routine-count-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .routine-count-item { background-color: #141518; border: 1px solid var(--card-border); border-radius: 6px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; }
     .routine-label { font-size: 0.85rem; color: var(--text-main); }
-
     .mini-control { display: flex; align-items: center; gap: 6px; }
     .mini-btn { background: #2a2e38; border: none; color: var(--text-main); width: 26px; height: 26px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     .mini-btn:hover { background-color: var(--accent-gold); color: #000; }
     .mini-display { font-size: 0.85rem; font-weight: bold; color: var(--accent-gold); min-width: 28px; text-align: center; }
-
     .btn { background-color: var(--accent-gold); color: #000; border: none; border-radius: 6px; padding: 12px 16px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.95rem; }
     .btn-secondary { background-color: transparent; border: 1px solid var(--card-border); color: var(--text-main); }
-
     .routine-box { background-color: #141518; border: 1px solid var(--card-border); border-radius: 8px; padding: 16px; margin-top: 16px; }
     .routine-item { margin-bottom: 12px; }
     .routine-item:last-child { margin-bottom: 0; }
     .routine-tag { display: inline-block; font-size: 0.75rem; background-color: rgba(212, 175, 55, 0.15); color: var(--accent-gold); padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; }
     .routine-desc { font-size: 0.9rem; color: var(--text-main); }
-
     .stat-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
     .stat-box { background-color: #141518; border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 16px; }
     .stat-icon { width: 44px; height: 44px; border-radius: 50%; background-color: rgba(212, 175, 55, 0.15); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
     .stat-info .title { font-size: 0.8rem; color: var(--text-sub); }
     .stat-info .val { font-size: 1.3rem; font-weight: bold; color: var(--text-main); }
     .stat-info .sub { font-size: 0.75rem; color: var(--text-sub); }
-
     .chart-container { height: 180px; display: flex; align-items: flex-end; gap: 6px; padding-top: 20px; border-bottom: 1px solid var(--card-border); }
     .bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
     .bar { width: 100%; background-color: var(--accent-gold); border-radius: 3px 3px 0 0; min-height: 2px; }
     .bar-label { font-size: 0.65rem; color: var(--text-sub); margin-top: 6px; }
-
     .summary-box { background-color: rgba(212, 175, 55, 0.1); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
     .summary-box h4 { color: var(--accent-gold); margin-bottom: 6px; font-size: 0.95rem; }
     .summary-box p { font-size: 0.85rem; color: var(--text-main); }
-
     .table-container { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     th, td { padding: 10px; border-bottom: 1px solid var(--card-border); text-align: left; }
@@ -177,22 +161,22 @@
       </form>
     </div>
 
-    <!-- 곡별 스마트 동적 루틴 생성기 -->
+    <!-- 범용 스마트 만능 분석 루틴 생성기 -->
     <div class="card">
-      <div class="card-title">곡별 스마트 루틴 생성기</div>
+      <div class="card-title">곡별 스마트 분석 루틴 생성기</div>
       <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">
-        연습할 곡명을 입력하시면 해당 곡의 특성과 테크닉에 맞춘 스마트 맞춤 루틴이 분석되어 나타납니다.
+        어떤 곡이든 곡명을 입력하시면 곡의 성격, 키워드, 스타일을 분석해 전용 연습 루틴을 제안합니다.
       </p>
       <div class="form-group">
-        <input type="text" id="customPieceInput" placeholder="예: 슈만 두 사람의 척탄병, 엘가 첼로 협주곡">
+        <input type="text" id="customPieceInput" placeholder="예: 생상스 백조, 바흐 무반주, 포퍼 에튀드, 드보르작">
       </div>
-      <button class="btn btn-secondary" onclick="generateDynamicRoutine()">✨ 스마트 루틴 생성하기</button>
+      <button class="btn btn-secondary" onclick="generateUniversalRoutine()">✨ 스마트 루틴 생성하기</button>
       <div class="routine-box" id="routineResult" style="display: none;">
         <h4 id="routinePieceTitle" style="color: var(--accent-gold); margin-bottom: 12px; font-size: 1rem;"></h4>
-        <div class="routine-item"><div class="routine-tag">1단계: 조성 & 음정 스케일</div><div class="routine-desc" id="rtScale"></div></div>
-        <div class="routine-item"><div class="routine-tag">2단계: 활 배분 & 아티큘레이션</div><div class="routine-desc" id="rtArtic"></div></div>
-        <div class="routine-item"><div class="routine-tag">3단계: 곡 특화 테크닉 연습</div><div class="routine-desc" id="rtRhythm"></div></div>
-        <div class="routine-item"><div class="routine-tag">4단계: 마디별 연습 순서 제안</div><div class="routine-desc" id="rtSection"></div></div>
+        <div class="routine-item"><div class="routine-tag">1단계: 스케일 & 옥타브 포지션</div><div class="routine-desc" id="rtScale"></div></div>
+        <div class="routine-item"><div class="routine-tag">2단계: 활 배분 & 레인을 통한 톤 조절</div><div class="routine-desc" id="rtArtic"></div></div>
+        <div class="routine-item"><div class="routine-tag">3단계: 리듬 & 테크닉 변형 연습</div><div class="routine-desc" id="rtRhythm"></div></div>
+        <div class="routine-item"><div class="routine-tag">4단계: 마디 세분화 및 BPM 단계상향</div><div class="routine-desc" id="rtSection"></div></div>
       </div>
     </div>
 
@@ -348,48 +332,60 @@
     document.getElementById('streakDisplay').innerText = `🔥 ${streak}일 연속 연습 중`;
   }
 
-  // 곡별 진짜 스마트 동적 루틴 엔진
-  function generateDynamicRoutine() {
-    const title = document.getElementById('customPieceInput').value.trim();
-    if (!title) { alert('곡명을 입력해주세요.'); return; }
+  // 어떤 곡이든 만능 분석하는 곡 분석 엔진
+  function generateUniversalRoutine() {
+    const rawTitle = document.getElementById('customPieceInput').value.trim();
+    if (!rawTitle) { alert('곡명을 입력해주세요.'); return; }
 
     document.getElementById('routineResult').style.display = 'block';
-    document.getElementById('routinePieceTitle').innerText = `[${title}] 곡별 맞춤 분석 루틴`;
+    document.getElementById('routinePieceTitle').innerText = `[${rawTitle}] 곡별 전용 맞춤 분석 루틴`;
 
-    const lowerTitle = title.toLowerCase();
+    const title = rawTitle.toLowerCase();
 
-    if (lowerTitle.includes('척탄병') || lowerTitle.includes('슈만')) {
-      document.getElementById('rtScale').innerText = `G major (사장조) 2옥타브 스케일 및 D/G현 개방현 중심 4도 튜닝 음정 점검`;
-      document.getElementById('rtArtic').innerText = `행진곡풍의 당당한 억양을 위해 활 밑(Nut) 사용 시 속도감 있고 마르텔라토한 활 사용`;
-      document.getElementById('rtRhythm').innerText = `프랑스 국가 멜로디 테마 구간 붓점 리듬의 16분음표를 명확하고 뚜렷하게 변형 연습`;
-      document.getElementById('rtSection').innerText = `1~8마디 주제 선율 명확성 점검 → 클라이맥스 조바꿈 구간 템포 천천히 고정 연습`;
-    } else if (lowerTitle.includes('엘가') || lowerTitle.includes('elgar')) {
-      document.getElementById('rtScale').innerText = `E minor (마단조) 3옥타브 스케일 및 3단음 화음(Chords) 활 무게 중심 점검`;
-      document.getElementById('rtArtic').innerText = `1악장 오프닝 코드의 브릿지 가까운 레인(5-6 레인) 깊은 레가토 연주 및 릴리즈`;
-      document.getElementById('rtRhythm').innerText = `16분음표의 질주 구간 활 밀림 방지용 역붓점 연습 및 옥타브 포지션 이동 연습`;
-      document.getElementById('rtSection').innerText = `오프닝 첫 4마디 화음 밸런스 → 스케르초 16분음표 패시지 5bpm씩 단계적 상향`;
-    } else if (lowerTitle.includes('바흐') || lowerTitle.includes('bach')) {
-      document.getElementById('rtScale').innerText = `G major / D minor 무반주 조성 스케일 및 하모닉스 음정 울림 체크`;
-      document.getElementById('rtArtic').innerText = `다층적 다이내믹 구분을 위해 활 위치(Contact Point)와 브릿지 간격 일정하게 유지`;
-      document.getElementById('rtRhythm').innerText = `연속 16분음표 펼침화음 구간 세미오프 활쓰기 및 손목 유연성 루틴`;
-      document.getElementById('rtSection').innerText = `프렐류드 첫 마디 음정 튜닝 → 다성음악 주제 테마 소리 크기 밸런스 분리`;
-    } else if (lowerTitle.includes('파헬벨') || lowerTitle.includes('캐논')) {
-      document.getElementById('rtScale').innerText = `D major (라장조) 2옥타브 스케일 및 8마디 베이스 바소 콘티누오 음정 조율`;
-      document.getElementById('rtArtic').innerText = `지속적인 8분음표 피치카토 및 레가토 활선율의 일정한 활 무게 유지`;
-      document.getElementById('rtRhythm').innerText = `변주곡 진행에 따른 16분음표 활 배분 균형 및 교대 활쓰기 점검`;
-      document.getElementById('rtSection').innerText = `기본 8마디 루프 베이스 템포 고정 → 3변주 16분음표 구간 집중 점검`;
-    } else if (lowerTitle.includes('윌리엄') || lowerTitle.includes('서곡')) {
-      document.getElementById('rtScale').innerText = `E major (마장조) 3옥타브 스케일 및 포지션 5~7 고음역대 인토네이션 점검`;
-      document.getElementById('rtArtic').innerText = `스피카토 및 팁(Tip) 부분의 짧고 경쾌한 숏 보잉 아티큘레이션`;
-      document.getElementById('rtRhythm').innerText = `빠른 셋엔음표 및 16분음표 리듬 타격감을 위한 오른손 손가락 관절 연습`;
-      document.getElementById('rtSection').innerText = `첼로 5중주 오프닝 서정적 구간 → 빠른 템포 진입 마디 반복 세분화`;
-    } else {
-      // 일반 동적 알고리즘 조합
-      document.getElementById('rtScale').innerText = `'${title}'의 메인 조성 스케일 및 2/3옥타브 아르페지오 음정 정확도 점검`;
-      document.getElementById('rtArtic').innerText = `'${title}' 선율에 맞춘 활 분배 위치(너트/중앙/팁) 및 레가토/스타카토 명확화`;
-      document.getElementById('rtRhythm').innerText = `'${title}'에서 까다로운 변형 리듬(붓점/역붓점) 및 슬로 템포 핑거링 연습`;
-      document.getElementById('rtSection').innerText = `'${title}' 취약 4마디 선정 → 느린 템포(50%) 시작 → 목표 BPM까지 5bpm 단위 상향`;
+    // 1. 조성/스케일 파악
+    let scaleText = `'${rawTitle}'의 메인 테마 조성 스케일 및 아르페지오 2/3옥타브 음정 체크`;
+    if (title.includes('사장조') || title.includes('g maj') || title.includes('g장조') || title.includes('척탄병')) {
+      scaleText = `G major (사장조) 2옥타브 스케일 & D/G현 저음역대 튜닝 정확도 점검`;
+    } else if (title.includes('라장조') || title.includes('d maj') || title.includes('캐논')) {
+      scaleText = `D major (라장조) 3옥타브 스케일 & A현 고음역대 하모닉스 음정 점검`;
+    } else if (title.includes('단조') || title.includes('min') || title.includes('엘가') || title.includes('협주곡')) {
+      scaleText = `단조(Minor) 스케일 특유의 이음매 화음 및 반음 포지션 이동 밀착 점검`;
+    } else if (title.includes('백조') || title.includes('생상스')) {
+      scaleText = `G major (사장조) 3옥타브 스케일 및 텐션감 있는 레가토 톤 조율`;
     }
+
+    // 2. 활법/아티큘레이션 분석
+    let articText = `'${rawTitle}'의 음악적 표현을 위한 활 분배 및 브릿지 접촉 레인(Contact Point) 유지`;
+    if (title.includes('백조') || title.includes('노래') || title.includes('아리아') || title.includes('아다지오') || title.includes('로망스')) {
+      articText = `긴 호흡의 보잉: 브릿지 가까이(4-5레인) 활 속도를 느리게 하여 끊김 없는 멜로디 연결`;
+    } else if (title.includes('서곡') || title.includes('스케르초') || title.includes('빠른') || title.includes('알레그로') || title.includes('타란텔라')) {
+      articText = `짧고 명확한 보잉: 활 중간/팁 부근에서 손목 관절을 이용한 경쾌한 스피카토 & 마르텔라토`;
+    } else if (title.includes('에튀드') || title.includes('드판') || title.includes('포퍼') || title.includes('연습곡')) {
+      articText = `활 위치 고정: 활이 위아래로 흔들리지 않도록 활털 각도를 엄지와 손가락으로 정밀 제어`;
+    }
+
+    // 3. 리듬 & 테크닉 변형 연습
+    let rhythmText = `'${rawTitle}'의 까다로운 도약 패시지 및 리듬 변형(붓점/역붓점) 연습`;
+    if (title.includes('협주곡') || title.includes('concerto') || title.includes('소나타')) {
+      rhythmText = `카덴차 및 도약 구간: 핑거링 포지션 이동 시 엄지(Thumb position) 축 고정 후 붓점 변형`;
+    } else if (title.includes('무반주') || title.includes('바흐') || title.includes('bach')) {
+      rhythmText = `다성음악 구조: 메인 멜로디음과 화음 반주음의 소리 크기 밸런스를 위한 활 무게 조절`;
+    } else {
+      rhythmText = `난이도 마디 구간: 16분음표 4개를 '붓점→역붓점→2잇단음표'로 리듬을 바꿔가며 오른손 긴장 완화`;
+    }
+
+    // 4. 세부 마디 루틴
+    let sectionText = `'${rawTitle}' 취약 마디 4개 선정 -> 느린 템포(50%) 시작 -> 5BPM씩 단계적 상향`;
+    if (title.includes('협주곡') || title.includes('서곡')) {
+      sectionText = `클라이맥스 8마디 집중 공략: 슬로우 템포 인토네이션 점검 후 목표 BPM까지 단계적 도달`;
+    } else {
+      sectionText = `첫 4마디 메인 주제 톤 완성 -> 도약 마디 반복 -> 템포를 늦춘 상태에서 오디오 녹음 모니터링`;
+    }
+
+    document.getElementById('rtScale').innerText = scaleText;
+    document.getElementById('rtArtic').innerText = articText;
+    document.getElementById('rtRhythm').innerText = rhythmText;
+    document.getElementById('rtSection').innerText = sectionText;
   }
 
   function renderAnalysis() {
